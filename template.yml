@@ -7,7 +7,7 @@ Parameters:
   Project:
     Description: "Project Name"
     Type: String
-    Default: "bitflyerAPI"
+    Default: "bitflyerapi"
 
   Stage:
     Description: "Environment stage"
