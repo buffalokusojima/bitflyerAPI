@@ -1275,7 +1275,7 @@ Resources:
       ContentBasedDeduplication: True
       DelaySeconds: 0
       FifoQueue: True
-      QueueName: "NormalOrderQueue.fifo"
+      QueueName: !Sub "${Project}-${Stage}-NormalOrderQueue.fifo"
       ReceiveMessageWaitTimeSeconds: 20
       VisibilityTimeout: 10
       
@@ -1285,7 +1285,7 @@ Resources:
       ContentBasedDeduplication: True
       DelaySeconds: 0
       FifoQueue: True
-      QueueName: "SpecialOrderQueue.fifo"
+      QueueName: !Sub "${Project}-${Stage}-SpecialOrderQueue.fifo"
       ReceiveMessageWaitTimeSeconds: 20
       VisibilityTimeout: 10
       
