@@ -1453,10 +1453,10 @@ Resources:
         ViewerCertificate:
           SslSupportMethod: sni-only
           AcmCertificateArn: !Ref AcmCertificateArn
-        Logging:
-          Bucket: !GetAtt LogBucket.DomainName
-          IncludeCookies: True
-          Prefix: "cloudfront/"
+        # Logging:
+        #   Bucket: !GetAtt LogBucket.DomainName
+        #   IncludeCookies: True
+        #   Prefix: "cloudfront/"
           
   CloudFrontOriginAccessIdentity:
     Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
