@@ -157,7 +157,7 @@ Resources:
   ApiGatewayDomainName:
     Type: AWS::ApiGateway::DomainName
     Properties:
-      CertificateArn: !Ref CertificateArn
+      CertificateArn: !Ref AcmCertificateArn
       DomainName: !If [isProd, !Sub "${APIDomainName}-${Project}.${HostedZoneName}", !Sub "${APIDomainName}-${Project}-${Stage}.${HostedZoneName}"]
     
     
