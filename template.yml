@@ -156,7 +156,7 @@ Resources:
       RestApiId:
         Ref: RestApi
       Description: "apigateway deployment"
-      StageName: "prod"
+      StageName: !Ref Stage
   
   ApiGatewayDomainName:
     Type: AWS::ApiGateway::DomainName
@@ -190,7 +190,7 @@ Resources:
       Body:
         info:
           version: '1.0'
-          title: !Ref 'AWS::StackName'
+          title: !Sub "${Project}-${Stage}-apigateway"
         paths:
           /ControlPriceAlert:
             post:
