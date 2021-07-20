@@ -1467,3 +1467,98 @@ Resources:
     Properties:
       CloudFrontOriginAccessIdentityConfig:
         Comment: !Sub "${Project}-${Stage}-CloudFrontOriginAccessIdentity"
+        
+  
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: !Sub "${Project}-${Stage}-UserPool"
+      AdminCreateUserConfig:
+          AllowAdminCreateUserOnly: false
+      AliasAttributes:
+        - email
+        - phone_number
+        - preferred_username
+      AutoVerifiedAttributes:
+        - email
+        - phone_number
+      UsernameConfiguration:
+        CaseSensitive: False
+      EmailVerificationMessage: "Your verification code is {####}."
+      EmailVerificationSubject: "Your verification code"
+      SmsAuthenticationMessage: "Your verification code is {####}."
+      SmsVerificationMessage: "Your verification code is {####}."
+      MfaConfiguration: 'OFF'
+      SmsConfiguration:
+        SnsCallerArn: !GetAtt UserPoolSMSRole.Arn
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 8
+          RequireLowercase: true
+          RequireNumbers: true
+          RequireSymbols: false
+          RequireUppercase: false
+      Schema:
+        - AttributeDataType: "String"
+          DeveloperOnlyAttribute: false
+          Mutable: true
+          Name: "email"
+          StringAttributeConstraints:
+            MaxLength: "2048"
+            MinLength: "0"
+          Required: true
+        - AttributeDataType: "String"
+          DeveloperOnlyAttribute: false
+          Mutable: true
+          Name: "phone_number"
+          NumberAttributeConstraints:
+            MaxValue: "21"
+            MinValue: "0"
+          Required: true
+      SmsAuthenticationMessage:  "Your authentication code is {####}."
+      SmsVerificationMessage: "Your verification code is {####}."
+  
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: !Sub "${Project}-${Stage}-UserPoolClient"
+      ExplicitAuthFlows:
+        - ALLOW_ADMIN_USER_PASSWORD_AUTH
+        - ALLOW_CUSTOM_AUTH
+        - ALLOW_USER_SRP_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+      GenerateSecret: false
+      UserPoolId:
+        Ref: UserPool
+
+  UserPoolSMSRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${Project}-${Stage}-UserPool-SMS-Role"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Effect: "Allow"
+            Principal:
+              Service:
+                - "cognito-idp.amazonaws.com"
+            Action:
+              - "sts:AssumeRole"
+      ManagedPolicyArns:
+        - !Ref UserPoolSMSPolicy
+      MaxSessionDuration: 3600
+      Path: "/"
+        
+  UserPoolSMSPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Sub "${Project}-${Stage}-UserPool-SMS-Policy"
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          -
+            Effect: "Allow"
+            Action:
+              - "sns:publish"
+            Resource: "*"   
