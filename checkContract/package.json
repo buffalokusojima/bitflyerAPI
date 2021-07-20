@@ -1,0 +1,22 @@
+{
+  "name": "checkcontract",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.647.0",
+    "axios": "^0.21.1",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.5",
+    "request-promise-native": "^1.0.8",
+    "sync-request": "^6.1.0",
+    "time": "^0.12.0"
+  }
+}

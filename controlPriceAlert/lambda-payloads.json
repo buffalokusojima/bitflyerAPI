@@ -1,0 +1,12 @@
+{
+    "ControlPriceAlertFunction": {
+        "lambda": {
+            "body": {
+                "coin_pair": "FX_BTC_JPY",
+                "side": "down",
+                "price": "9000000",
+                "mode": "delete"
+            }
+        }
+    }
+}

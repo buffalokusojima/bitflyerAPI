@@ -1,0 +1,60 @@
+{
+    "ControlAutoOrderFunction": {
+        "lambda": {
+            "body": {
+                "coin_pair": "FX_BTC_JPY",
+                "parameters": [
+                    {
+                        "type": "STOP",
+                        "side": "BUY",
+                        "price": "1080000",
+                        "size": "0.5"
+                    },
+                    {
+                        "type": "STOP",
+                        "side": "SELL",
+                        "price": "1070000",
+                        "size": "0.5"
+                    }
+                ]
+            }
+        },
+        "apigateway": {
+            "path": "/ControlOrder",
+            "method": {
+                "value": "POST",
+                "items": [
+                    "POST"
+                ]
+            },
+            "body": {
+                "test": "test"
+            }
+        }
+    },
+    "": {
+        "lambda": {}
+    },
+    "ControlOrderFunction": {
+        "lambda": {
+            "body": {
+                "coin_pair": "FX_BTC_JPY",
+                "order_method": "OCO",
+                "parameters": [
+                    {
+                        "type": "STOP",
+                        "price": 4000000,
+                        "side": "BUY",
+                        "size": 0.001
+                    },
+                    {
+                        "type": "LIMIT",
+                        "price": 1100000,
+                        "side": "BUY",
+                        "size": 0.1
+                    }
+                ]
+            }
+        }
+    }
+}

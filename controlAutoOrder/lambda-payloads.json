@@ -1,0 +1,21 @@
+{
+    "ControlAutoOrderFunction": {
+        "lambda": {
+            "body": {
+                "coin_pair": "FX_BTC_JPY",
+                "order_method": "SIMPLE",
+                "parameters": [
+                    {
+                        "price": "1200000",
+                        "side": "BUY",
+                        "size": "0.2",
+                        "type": "STOP"
+                    }
+                ],
+                "mode": "delete",
+                "price": 1850000,
+                "parent_id": "JRF20201118-005743-119565"
+            }
+        }
+    }
+}
