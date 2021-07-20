@@ -66,9 +66,13 @@ Parameters:
     
 
 Conditions:
+  
   IsDynamoDBBillingModeProvisioned: !Equals
     - !Ref DynamoDBTableBillingMode
     - PROVISIONED
+    
+  IsProd:
+    !Equals [!Ref Stage, prod]
 
 Resources:
 
@@ -158,7 +162,7 @@ Resources:
     Type: AWS::ApiGateway::DomainName
     Properties:
       CertificateArn: !Ref AcmCertificateArn
-      DomainName: !If [isProd, !Sub "${APIDomainName}-${Project}.${HostedZoneName}", !Sub "${APIDomainName}-${Project}-${Stage}.${HostedZoneName}"]
+      DomainName: !If [IsProd, !Sub "${APIDomainName}-${Project}.${HostedZoneName}", !Sub "${APIDomainName}-${Project}-${Stage}.${HostedZoneName}"]
     
     
   ApiGatewayDomainMapping:
@@ -174,7 +178,7 @@ Resources:
     Properties:
       HostedZoneName: !Sub "${HostedZoneName}."
       RecordSets:
-        - Name: !If [isProd, !Sub "${APIDomainName}-${Project}.${HostedZoneName}.", !Sub "${APIDomainName}-${Project}-${Stage}.${HostedZoneName}."]
+        - Name: !If [IsProd, !Sub "${APIDomainName}-${Project}.${HostedZoneName}.", !Sub "${APIDomainName}-${Project}-${Stage}.${HostedZoneName}."]
           Type: A
           AliasTarget:
             HostedZoneId: Z2FDTNDATAQYW2
