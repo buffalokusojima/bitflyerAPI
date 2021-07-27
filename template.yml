@@ -192,7 +192,7 @@ Resources:
           version: '1.0'
           title: !Sub "${Project}-${Stage}-apigateway"
         paths:
-          /ControlPriceAlert:
+          /controlPriceAlert:
             post:
               produces:
               - "application/json"
@@ -250,7 +250,7 @@ Resources:
               produces:
                 - application/json
           
-          /ControlOrder:
+          /controlOrder:
             post:
               produces:
               - "application/json"
@@ -308,7 +308,7 @@ Resources:
               produces:
                 - application/json
                 
-          /ControlAutoOrder:
+          /controlAutoOrder:
             post:
               produces:
               - "application/json"
@@ -366,7 +366,7 @@ Resources:
               produces:
                 - application/json
                 
-          /GetOrders:
+          /getOrders:
             get:
               produces:
               - "application/json"
@@ -424,7 +424,7 @@ Resources:
               produces:
                 - application/json
                 
-          /GetOrderDetail:
+          /getOrderDetail:
             post:
               produces:
               - "application/json"
@@ -482,7 +482,7 @@ Resources:
               produces:
                 - application/json
                 
-          /GetPositionStatus:
+          /getPositionStatus:
             get:
               produces:
               - "application/json"
@@ -538,7 +538,7 @@ Resources:
               produces:
                 - application/json
           
-          /GetAutoOrders:
+          /getAutoOrders:
             get:
               produces:
               - "application/json"
@@ -596,7 +596,7 @@ Resources:
               produces:
                 - application/json
           
-          /CancelOrder:
+          /cancelOrder:
             post:
               produces:
               - "application/json"
