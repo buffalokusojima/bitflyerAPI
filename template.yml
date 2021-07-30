@@ -196,6 +196,8 @@ Resources:
             post:
               produces:
               - "application/json"
+              security:
+                - authorizer: [] 
               responses:
                 "200":
                   description: "200 response"
@@ -254,6 +256,8 @@ Resources:
             post:
               produces:
               - "application/json"
+              security:
+                - authorizer: [] 
               responses:
                 "200":
                   description: "200 response"
@@ -312,6 +316,8 @@ Resources:
             post:
               produces:
               - "application/json"
+              security:
+                - authorizer: [] 
               responses:
                 "200":
                   description: "200 response"
@@ -370,6 +376,8 @@ Resources:
             get:
               produces:
               - "application/json"
+              security:
+                - authorizer: [] 
               responses:
                 "200":
                   description: "200 response"
@@ -428,6 +436,8 @@ Resources:
             post:
               produces:
               - "application/json"
+              security:
+                - authorizer: [] 
               responses:
                 "200":
                   description: "200 response"
@@ -486,6 +496,8 @@ Resources:
             get:
               produces:
               - "application/json"
+              security:
+                - authorizer: [] 
               responses:
                 "200":
                   description: "200 response"
@@ -542,6 +554,8 @@ Resources:
             get:
               produces:
               - "application/json"
+              security:
+                - authorizer: [] 
               responses:
                 "200":
                   description: "200 response"
@@ -600,6 +614,8 @@ Resources:
             post:
               produces:
               - "application/json"
+              security:
+                - authorizer: [] 
               responses:
                 "200":
                   description: "200 response"
@@ -664,7 +680,18 @@ Resources:
             responseParameters:
               gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
             responseTemplates:
-              application/json: "{\"message\":$context.error.messageString}"         
+              application/json: "{\"message\":$context.error.messageString}" 
+              
+        securityDefinitions:
+          authorizer:
+            type: "apiKey"
+            name: "Authorization"
+            in: "header"
+            x-amazon-apigateway-authtype: "cognito_user_pools"
+            x-amazon-apigateway-authorizer:
+              providerARNs:
+              - !Ref UserPool
+              type: "cognito_user_pools"
         
         swagger: '2.0'
         
