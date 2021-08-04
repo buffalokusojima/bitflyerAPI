@@ -1495,6 +1495,17 @@ Resources:
       CloudFrontOriginAccessIdentityConfig:
         Comment: !Sub "${Project}-${Stage}-CloudFrontOriginAccessIdentity"
         
+  WebContentRoute53:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Sub "${HostedZoneName}."
+      RecordSets:
+        - Name: !Sub "${S3DomainName}.${HostedZoneName}."
+          Type: A
+          AliasTarget:
+            HostedZoneId: Z2FDTNDATAQYW2
+            DNSName: !GetAtt Cloudfrontnet.DomainName
+  
   
   UserPool:
     Type: AWS::Cognito::UserPool
