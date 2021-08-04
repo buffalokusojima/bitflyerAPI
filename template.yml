@@ -1438,6 +1438,18 @@ Resources:
         IgnorePublicAcls: True
         RestrictPublicBuckets: True
         
+  WebContentBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebcontentBucket
+      PolicyDocument:
+        Statement:
+          - Action: s3:GetObject
+            Effect: Allow
+            Resource: !Sub "${WebcontentBucket.Arn}/*"
+            Principal:
+              AWS: !Sub arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${CloudFrontOriginAccessIdentity}
+        
   Cloudfrontnet:
     Type: AWS::CloudFront::Distribution
     Properties:
